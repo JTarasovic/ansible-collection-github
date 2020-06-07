@@ -30,7 +30,7 @@ collections:
 tasks:
   - name: Ansible | Get latest release
     set_fact:
-      ansible_version: "{{ lookup('artis3.github.latest_release', 'ansible/ansible')[1:] }}
+      ansible_version: "{{ lookup('artis3n.github.latest_release', 'ansible/ansible')[1:] }}
 ```
 
 Note: `[1:]` is used to strip out the `v` in the version tag, e.g. `v1.1.0` becomes `1.1.0`.
@@ -55,7 +55,7 @@ Example:
 tasks:
   - name: Ansible | Get latest release
     set_fact:
-      ansible_version: "{{ lookup('artis3.github.latest_release', 'ansible/ansible')[1:] }}
+      ansible_version: "{{ lookup('artis3n.github.latest_release', 'ansible/ansible')[1:] }}
 ```
 
 <br>
@@ -65,7 +65,7 @@ tasks:
 ```yaml
 - name: Terraform | Get latest release
   set_fact:
-    terraform_version: "{{ lookup('artis3.github.release_version', 'hashicorp/terraform')[1:] }}"
+    terraform_version: "{{ lookup('artis3n.github.release_version', 'hashicorp/terraform')[1:] }}"
 
 - name: Terraform | Ensure directory
   file:
@@ -122,7 +122,7 @@ You will notice that in `molecule/default/molecule.yml` I hard-code my personal 
 ```yaml
 ANSIBLE_COLLECTIONS_PATHS: "~/.ansible/collections:~/Nextcloud/Development/collections"
 ```
- 
+
  I don't have a good way of writing something in code that can apply more generally due to the way Ansible currently handles collections so you'll likely need to override that to test this locally.
 
 Alternatively, you can submit a draft pull request to this repository and a GitHub Actions workflow will trigger and run `molecule test` on your pull request.
